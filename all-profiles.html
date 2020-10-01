@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>FindYourLove</title>
+</head>
+<body>
+
+	<div>
+		
+		<header>
+			<h1>FindYourLove - Alle profiler</h1>
+		</header>
+		
+		<nav>
+			<ul>
+				<li><a href="all-profiles.html">Alle profiler</a></li>
+				<li><a href="dagens-profil.html">Dagens profil</a></li>
+			</ul>
+		</nav>
+		
+	</div>
+
+	<div id="showall">
+
+	</div>
+
+	<script>
+		var arr = [
+			{
+				name: "Brandon",
+				photo: "man2.jpg",
+				age: 21,
+				gender: "man",
+				desc: "A man with dreams"
+			},
+			{
+				name: "Lilly",
+				photo: "woman1.jpg",
+				age: 23,
+				gender: "woman",
+				desc: "Freindly, charming and enthusiastic"
+			},
+			{
+				name: "Sally",
+				photo: "woman2.jpg",
+				age: 27,
+				gender: "woman",
+				desc: "Just a girl who love flowers"
+			},
+			{
+				name: "Peggy",
+				photo: "woman3.jpg",
+				age: 26,
+				gender: "woman",
+				desc: "A hard worker"
+			},
+			{
+				name: "Kale",
+				photo: "man1.jpg",
+				age: 28,
+				gender: "man",
+				desc: "A dedicated person"
+			},
+			{
+				name: "Sam",
+				photo: "man3.jpg",
+				age: 26,
+				gender: "man",
+				desc: "A hard worker"
+			}
+		];
+
+		window.onload = function() {	
+			var main_divv = document.getElementById("showall");
+				arr.forEach(person => {
+					var each_div = document.createElement("div");
+
+					var each_name = document.createElement("h2");
+					var node_name = document.createTextNode("Name: \t"+person.name);
+					each_name.appendChild(node_name);
+
+					each_div.appendChild(each_name);
+
+
+					var each_img = document.createElement("img");
+					each_img.src = person.photo;
+
+					each_div.appendChild(each_img);
+
+
+					var each_age = document.createElement("h4");
+					var node_age = document.createTextNode("Age: \t"+person.age);
+					each_age.appendChild(node_age);
+
+					each_div.appendChild(each_age);
+
+
+					var each_desc = document.createElement("p");
+					var node_desc = document.createTextNode("Description: \n"+person.desc);
+					each_desc.appendChild(node_desc);
+
+					each_div.appendChild(each_desc);
+
+					
+					main_divv.appendChild(each_div);
+				});
+
+		}
+
+		// sh.addEventListener("click", function() {
+		// 		var main_divv = document.getElementById("showall");
+		// 		arr.forEach(person => {
+		// 			var each_div = document.createElement("div");
+
+		// 			var each_name = document.createElement("h2");
+		// 			var node_name = document.createTextNode("Name: \t"+person.name);
+		// 			each_name.appendChild(node_name);
+
+		// 			each_div.appendChild(each_name);
+
+
+		// 			var each_img = document.createElement("img");
+		// 			each_img.src = person.photo;
+
+		// 			each_div.appendChild(each_img);
+
+
+		// 			var each_age = document.createElement("h4");
+		// 			var node_age = document.createTextNode("Age: \t"+person.age);
+		// 			each_age.appendChild(node_age);
+
+		// 			each_div.appendChild(each_age);
+
+
+		// 			var each_desc = document.createElement("p");
+		// 			var node_desc = document.createTextNode("Description: \n"+person.desc);
+		// 			each_desc.appendChild(node_desc);
+
+		// 			each_div.appendChild(each_desc);
+
+					
+		// 			main_divv.appendChild(each_div);
+		// 		});
+
+		// });
+	</script>
+	
+</body>
+</html>
