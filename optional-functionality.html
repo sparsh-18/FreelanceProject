@@ -1,0 +1,178 @@
+
+<!-- This page asks the user for his hobbies and his desired gender
+The algorithm picks out profiles sharing same hobbies -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>???</title>
+</head>
+<body>
+
+	
+	<div>
+		
+		<header>
+			<h1>FindYourLove</h1>
+		</header>
+		
+		<nav>
+			<ul>
+				<li><a href="all-profiles.html">Alle profiler</a></li>
+				<li><a href="dagens-profil.html">Dagens profil</a></li>
+			</ul>
+		</nav>
+		
+		<main>
+		
+			<section>
+				<label>Mann eller kvinne?</label>
+				<input id="gender" type="text">
+				<label>Enter your hobbies?</label>
+				<input id="hobbies" type="text">
+				<input type="button" value="Vis forslag" onclick="findbyhobby()">
+			</section>
+			
+			<section>
+				<!-- Skriv ut en profil her -->
+				<div id="show">
+
+				</div>
+			</section>
+			
+		</main>
+		
+	</div>
+
+	<script>
+		var arr = [
+			{
+				name: "Brandon",
+				photo: "man2.jpg",
+				age: 21,
+				gender: "man",
+				hobbies: "rap,swimming,beatboxing",
+				desc: "A man with dreams"
+			},
+			{
+				name: "Lilly",
+				photo: "woman1.jpg",
+				age: 23,
+				gender: "woman",
+				hobbies: "swimming,guitaring",
+				desc: "Freindly, charming and enthusiastic"
+			},
+			{
+				name: "Sally",
+				photo: "woman2.jpg",
+				age: 27,
+				gender: "woman",
+				hobbies: "reading,singing",
+				desc: "Just a girl who love flowers"
+			},
+			{
+				name: "Peggy",
+				photo: "woman3.jpg",
+				age: 26,
+				gender: "woman",
+				hobbies: "painting,reading",
+				desc: "A hard worker"
+			},
+			{
+				name: "Kale",
+				photo: "man1.jpg",
+				age: 28,
+				gender: "man",
+				hobbies: "swimming,reading",
+				desc: "A dedicated person"
+			},
+			{
+				name: "Sam",
+				photo: "man3.jpg",
+				age: 26,
+				gender: "man",
+				hobbies: "rap,beatboxing,reading",
+				desc: "A hard worker"
+			}
+		];
+
+		function findbyhobby() {
+			var main_divv = document.getElementById("show"); //targeting main div to store profiles
+
+			if(main_divv.innerHTML) { // removing previous conent on button click
+				main_divv.innerHTML = null;
+			}
+			
+			//storing gender and hobbies entered
+			var gender = document.getElementById("gender").value;
+			var hobbies = document.getElementById("hobbies").value;
+			var hobbyarr = hobbies.split(",");
+
+			//looping through all profiles
+			arr.forEach(person => {
+				if(person.gender.toLocaleLowerCase() == gender.toLowerCase()){ //matcching genders
+					var person_hobbies = person.hobbies.split(","); // extracting hobbies of a person in an array
+					
+					var similarhobbies = []; // an array to store same hobbies
+
+					hobbyarr.forEach(myhobby => {
+						if(person_hobbies.indexOf(myhobby.trim()) > -1){
+							similarhobbies.push(myhobby) 
+						}
+					});
+
+
+					if(similarhobbies.length > 0){ //if matching hobbies found
+						var each_div = document.createElement("div");
+
+						//Creating and appending profile elements
+						
+						var each_name = document.createElement("h2");
+						var node_name = document.createTextNode("Name: \t"+person.name);
+						each_name.appendChild(node_name);
+
+						each_div.appendChild(each_name);
+
+
+						var each_img = document.createElement("img");
+						each_img.src = person.photo;
+
+						each_div.appendChild(each_img);
+
+
+						var each_age = document.createElement("h4");
+						var node_age = document.createTextNode("Age: \t"+person.age);
+						each_age.appendChild(node_age);
+
+						each_div.appendChild(each_age);
+
+
+						var each_desc = document.createElement("p");
+						var node_desc = document.createTextNode("Description: \n"+person.desc);
+						each_desc.appendChild(node_desc);
+
+						each_div.appendChild(each_desc);
+
+
+						var each_hobby = document.createElement("p");
+						var hobby = document.createTextNode("Simillar Hobbies: \t"+similarhobbies.toString());
+						each_hobby.appendChild(hobby);
+
+						each_div.appendChild(each_hobby);
+
+
+						// sub_div.appendChild(each_div);
+
+						main_divv.appendChild(each_div);
+
+					}
+					
+				}
+			});
+		}
+	</script>
+	
+</body>
+</html>

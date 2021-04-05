@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<title>Et forslag</title>
 </head>
+
 <body>
 
 	<div>
@@ -14,17 +16,17 @@
 
 		<nav>
 			<ul>
-				<li><a href="all-profiles.html">Alle profiler</a></li>
-				<li><a href="dagens-profil.html">Dagens profil</a></li>
+				<li><a href="all-profiles.html">All Profiles</a></li>
+				<li><a href="dagens-profil.html">Today's profile</a></li>
 			</ul>
 		</nav>
 
 		<main>
 
 			<section>
-				<label>Tast inn ønsket alder</label>
+				<label>Enter the desired age</label>
 				<input type="text" id="age" name="age" value=""><br>
-				<label>Mann eller kvinne?</label>
+				<label>Man or Woman?</label>
 				<input type="text" id="gender" name="gender" value="">
 				<input type="button" onclick="suggestion()" value="Vis forslag">
 			</section>
@@ -39,106 +41,122 @@
 		</main>
 
 	</div>
-     <script type="text/javascript">
-					 var arr = [
-						{
-							name: "Brandon",
-							photo: "man2.jpg",
-							age: 21,
-							gender: "man",
-							desc: "A man with dreams"
-						},
-						{
-							name: "Lilly",
-							photo: "woman1.jpg",
-							age: 23,
-							gender: "woman",
-							desc: "Freindly, charming and enthusiastic"
-						},
-						{
-							name: "Sally",
-							photo: "woman2.jpg",
-							age: 27,
-							gender: "woman",
-							desc: "Just a girl who love flowers"
-						},
-						{
-							name: "Peggy",
-							photo: "woman3.jpg",
-							age: 26,
-							gender: "woman",
-							desc: "A hard worker"
-						},
-						{
-							name: "Kale",
-							photo: "man1.jpg",
-							age: 28,
-							gender: "man",
-							desc: "A dedicated person"
-						},
-						{
-							name: "Sam",
-							photo: "man3.jpg",
-							age: 26,
-							gender: "man",
-							desc: "A hard worker"
+	<script type="text/javascript">
+		//An Array to store details of people
+		var arr = [
+			{
+				name: "Brandon",
+				photo: "man2.jpg",
+				age: 21,
+				gender: "man",
+				desc: "A man with dreams"
+			},
+			{
+				name: "Lilly",
+				photo: "woman1.jpg",
+				age: 23,
+				gender: "woman",
+				desc: "Freindly, charming and enthusiastic"
+			},
+			{
+				name: "Sally",
+				photo: "woman2.jpg",
+				age: 27,
+				gender: "woman",
+				desc: "Just a girl who love flowers"
+			},
+			{
+				name: "Peggy",
+				photo: "woman3.jpg",
+				age: 26,
+				gender: "woman",
+				desc: "A hard worker"
+			},
+			{
+				name: "Kale",
+				photo: "man1.jpg",
+				age: 28,
+				gender: "man",
+				desc: "A dedicated person"
+			},
+			{
+				name: "Sam",
+				photo: "man3.jpg",
+				age: 26,
+				gender: "man",
+				desc: "A hard worker"
+			}
+		];
+
+		function suggestion() {  // function to run on button click
+
+			var age = document.getElementById('age').value;  // getting entered age
+			var gender = document.getElementById('gender').value.toLowerCase();  // entered desired gender
+			var main_divv = document.getElementById("showall"); // targeting main div
+			
+			if (age < 25) {  // checking if age less than 25
+				
+				var each_div = document.createElement("div"); //creating a div to store profile
+				
+				var each_name = document.createElement("h2");
+				var node_name = document.createTextNode("Age less than 25");
+				
+				each_name.appendChild(node_name);
+				each_div.appendChild(each_name);
+
+				if (main_divv.innerText != "") {  // removing previous content on button click
+					main_divv.innerText = "";
+					main_divv.appendChild(each_div);
+				} else {
+					main_divv.appendChild(each_div);
+				}
+
+			} else {
+				for (var i = 0; i < arr.length; i++) { // looping through all profiles
+
+					if (arr[i].gender == gender && arr[i].age == age) {  // equating desired gender and age
+						var each_div = document.createElement("div");
+
+						//Adding name by creating an h2 element
+						var each_name = document.createElement("h2");
+						var node_name = document.createTextNode("Name: \t" + arr[i].name);
+						each_name.appendChild(node_name);
+						each_div.appendChild(each_name);
+
+						//Adding image by creating an img element
+						var each_img = document.createElement("img");
+						each_img.src = arr[i].photo;
+
+						each_div.appendChild(each_img);
+
+						//Adding age by creating an h4 element and appending it
+						var each_age = document.createElement("h4");
+						var node_age = document.createTextNode("Age: \t" + arr[i].age);
+						each_age.appendChild(node_age);
+
+						each_div.appendChild(each_age);
+
+						//Adding description by creating an p element
+						var each_desc = document.createElement("p");
+						var node_desc = document.createTextNode("Description: \n" + arr[i].desc);
+						each_desc.appendChild(node_desc);
+
+						each_div.appendChild(each_desc);
+
+
+						if (main_divv.innerText != "") { // removing previous content on button click
+							main_divv.innerText = "";
+							main_divv.appendChild(each_div);
+						} else {
+							main_divv.appendChild(each_div);
 						}
-					];
-
-					function suggestion() {
-						 var age = document.getElementById('age').value;
-						 var gender = document.getElementById('gender').value.toLowerCase();
-						 var main_divv = document.getElementById("showall");
-						 if(age < 25){
-									var each_div = document.createElement("div");
-									var each_name = document.createElement("h2");
-									var node_name = document.createTextNode("Sorry ! you'r under age");
-									each_name.appendChild(node_name);
-									each_div.appendChild(each_name);
-									if(main_divv.innerText!=""){
-										main_divv.innerText = "";
-										main_divv.appendChild(each_div);
-									}else{
-										main_divv.appendChild(each_div);
-									}
-						  }else{
-							  for(var i= 0; i < arr.length;i++){
-                  if(arr[i].gender == gender && arr[i].age == age){
- 								   	var each_div = document.createElement("div");
- 									  var each_name = document.createElement("h2");
-	 									var node_name = document.createTextNode("Name: \t"+arr[i].name);
-	 									each_name.appendChild(node_name);
-	 									each_div.appendChild(each_name);
-
-	 									var each_img = document.createElement("img");
-	 									each_img.src = arr[i].photo;
-
-	 									each_div.appendChild(each_img);
-
-										var each_age = document.createElement("h4");
-										var node_age = document.createTextNode("Age: \t"+arr[i].age);
-										each_age.appendChild(node_age);
-
-										each_div.appendChild(each_age);
-
-
-										var each_desc = document.createElement("p");
-										var node_desc = document.createTextNode("Description: \n"+arr[i].desc);
-										each_desc.appendChild(node_desc);
-
-										each_div.appendChild(each_desc);
-                    if(main_divv.innerText!=""){
-											main_divv.innerText = "";
-											main_divv.appendChild(each_div);
-										}else{
-											main_divv.appendChild(each_div);
-										}
-                    break;
- 								}
-						}
-
-						 }
+						break; // beak when one profile matched
 					}
-     </script>
+				}
+
+			}
+		}
+	</script>
 </body>
+
 </html>

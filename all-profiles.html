@@ -22,10 +22,13 @@
 	</div>
 
 	<div id="showall">
+		<!-- div to store all profiles -->
 
 	</div>
 
 	<script>
+		//An Array to store details of people
+
 		var arr = [
 			{
 				name: "Brandon",
@@ -71,24 +74,27 @@
 			}
 		];
 
+			//show all profiles on page load
 		window.onload = function() {	
-			var main_divv = document.getElementById("showall");
+			var main_divv = document.getElementById("showall"); //targeting main div
 				arr.forEach(person => {
-					var each_div = document.createElement("div");
+					var each_div = document.createElement("div"); //creating a div for each profile
 
+					//Adding name by creating an h2 element
 					var each_name = document.createElement("h2");
 					var node_name = document.createTextNode("Name: \t"+person.name);
 					each_name.appendChild(node_name);
 
 					each_div.appendChild(each_name);
 
-
+					//Adding image by creaing an image element and appending it to div
 					var each_img = document.createElement("img");
 					each_img.src = person.photo;
-
+					//each_img.height = 200;
 					each_div.appendChild(each_img);
 
 
+					//Adding age
 					var each_age = document.createElement("h4");
 					var node_age = document.createTextNode("Age: \t"+person.age);
 					each_age.appendChild(node_age);
@@ -96,54 +102,19 @@
 					each_div.appendChild(each_age);
 
 
+					//Description
 					var each_desc = document.createElement("p");
 					var node_desc = document.createTextNode("Description: \n"+person.desc);
 					each_desc.appendChild(node_desc);
 
 					each_div.appendChild(each_desc);
 
-					
+					//Appending to mainn div
 					main_divv.appendChild(each_div);
 				});
 
 		}
 
-		// sh.addEventListener("click", function() {
-		// 		var main_divv = document.getElementById("showall");
-		// 		arr.forEach(person => {
-		// 			var each_div = document.createElement("div");
-
-		// 			var each_name = document.createElement("h2");
-		// 			var node_name = document.createTextNode("Name: \t"+person.name);
-		// 			each_name.appendChild(node_name);
-
-		// 			each_div.appendChild(each_name);
-
-
-		// 			var each_img = document.createElement("img");
-		// 			each_img.src = person.photo;
-
-		// 			each_div.appendChild(each_img);
-
-
-		// 			var each_age = document.createElement("h4");
-		// 			var node_age = document.createTextNode("Age: \t"+person.age);
-		// 			each_age.appendChild(node_age);
-
-		// 			each_div.appendChild(each_age);
-
-
-		// 			var each_desc = document.createElement("p");
-		// 			var node_desc = document.createTextNode("Description: \n"+person.desc);
-		// 			each_desc.appendChild(node_desc);
-
-		// 			each_div.appendChild(each_desc);
-
-					
-		// 			main_divv.appendChild(each_div);
-		// 		});
-
-		// });
 	</script>
 	
 </body>
